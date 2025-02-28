@@ -31,6 +31,7 @@ class _ToDoScreenState extends State<ToDoScreen> {
 
   void _saveTasks() {
     _storage.write('tasks', _tasks);
+
   }
 
   void _addTask(inputData, status ) {
