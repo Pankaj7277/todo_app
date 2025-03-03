@@ -31,18 +31,18 @@ class _ToDoScreenState extends State<ToDoScreen> {
 
   void _saveTasks() {
     _storage.write('tasks', _tasks);
-
   }
 
-  void _addTask(inputData, status ) {
+  void _addTask(inputData, status) {
     if (inputData.isNotEmpty) {
       setState(() {
-        _tasks.add({'title':inputData, 'completed': status});
+        _tasks.add({'title': inputData, 'completed': status});
         // _controller.clear();
         _saveTasks();
       });
     }
   }
+
   void _updateTask(int index, String newTitle) {
     if (newTitle.isNotEmpty) {
       setState(() {
@@ -84,7 +84,7 @@ class _ToDoScreenState extends State<ToDoScreen> {
                 children: [
                   TextField(
                     controller: _controller,
-                    decoration:const  InputDecoration(labelText: 'Task Title'),
+                    decoration: const InputDecoration(labelText: 'Task Title'),
                   ),
                   Row(
                     children: [
@@ -97,7 +97,7 @@ class _ToDoScreenState extends State<ToDoScreen> {
                           });
                         },
                       ),
-                     const  Text('Completed')
+                      const Text('Completed')
                     ],
                   )
                 ],
@@ -105,7 +105,10 @@ class _ToDoScreenState extends State<ToDoScreen> {
               actions: [
                 TextButton(
                   onPressed: () => Navigator.pop(context),
-                  child:const Text('Cancel',style: TextStyle(color: Colors.black54),),
+                  child: const Text(
+                    'Cancel',
+                    style: TextStyle(color: Colors.black54),
+                  ),
                 ),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
@@ -134,25 +137,35 @@ class _ToDoScreenState extends State<ToDoScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: const Padding(
-          padding:  EdgeInsets.only(left: 30.0),
-          child:  Icon(Icons.widgets_outlined,size:  30,),
-        ),
-          title: const Text('To-Do List', style: TextStyle(fontWeight: FontWeight.w500),)),
+          leading: const Padding(
+            padding: EdgeInsets.only(left: 30.0),
+            child: Icon(
+              Icons.widgets_outlined,
+              size: 30,
+            ),
+          ),
+          title: const Text(
+            'To-Do List',
+            style: TextStyle(fontWeight: FontWeight.w500),
+          )),
       body: Column(
         children: [
           Expanded(
             child: _tasks.isEmpty
-                ?  Center(child: Container(
-                  child: const Column(
+                ? const Center(
+                    child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Icon(Icons.task_outlined, size: 30,),
-                      SizedBox(height: 10,),
+                      Icon(
+                        Icons.task_outlined,
+                        size: 30,
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
                       Text('No tasks added yet'),
                     ],
-                  ),
-                ))
+                  ))
                 : ListView.builder(
                     itemCount: _tasks.length,
                     itemBuilder: (context, index) {
@@ -174,7 +187,11 @@ class _ToDoScreenState extends State<ToDoScreen> {
                               ),
                               Expanded(
                                 child: ListTile(
-                                  title: Text("${_tasks[index]['title']}", style: TextStyle(fontWeight: FontWeight.w500),),
+                                  title: Text(
+                                    "${_tasks[index]['title']}",
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.w500),
+                                  ),
                                   subtitle: Text(
                                     _tasks[index]['completed']
                                         ? "Completed"
@@ -194,7 +211,9 @@ class _ToDoScreenState extends State<ToDoScreen> {
                               children: [
                                 TextButton.icon(
                                   onPressed: () {
-                                    TextEditingController editController = TextEditingController(text: _tasks[index]['title']);
+                                    TextEditingController editController =
+                                        TextEditingController(
+                                            text: _tasks[index]['title']);
                                     showDialog(
                                       context: context,
                                       builder: (context) {
@@ -202,20 +221,29 @@ class _ToDoScreenState extends State<ToDoScreen> {
                                           title: const Text('Edit Task'),
                                           content: TextField(
                                             controller: editController,
-                                            decoration: const InputDecoration(labelText: 'Task Title'),
+                                            decoration: const InputDecoration(
+                                                labelText: 'Task Title'),
                                           ),
                                           actions: [
                                             TextButton(
-                                              onPressed: () => Navigator.pop(context),
-                                              child: const Text('Cancel', style: TextStyle(color: Colors.black54),),
+                                              onPressed: () =>
+                                                  Navigator.pop(context),
+                                              child: const Text(
+                                                'Cancel',
+                                                style: TextStyle(
+                                                    color: Colors.black54),
+                                              ),
                                             ),
                                             ElevatedButton(
                                               style: ElevatedButton.styleFrom(
-                                                backgroundColor: Colors.amber[200], // Change button color
-                                                foregroundColor: Colors.black, // Change text color
+                                                backgroundColor: Colors.amber[
+                                                    200], // Change button color
+                                                foregroundColor: Colors
+                                                    .black, // Change text color
                                               ),
                                               onPressed: () {
-                                                _updateTask(index, editController.text);
+                                                _updateTask(
+                                                    index, editController.text);
                                                 Navigator.pop(context);
                                               },
                                               child: const Text('Update'),
@@ -225,15 +253,23 @@ class _ToDoScreenState extends State<ToDoScreen> {
                                       },
                                     );
                                   },
-
-                                  label: const Text('Edit', style: TextStyle(color:Colors.blue),),
-                                  icon: const Icon(Icons.edit, color: Colors.blue,),
+                                  label: const Text(
+                                    'Edit',
+                                    style: TextStyle(color: Colors.blue),
+                                  ),
+                                  icon: const Icon(
+                                    Icons.edit,
+                                    color: Colors.blue,
+                                  ),
                                 ),
                                 TextButton.icon(
                                   onPressed: () => _deleteTask(index),
                                   label: const Text('Delete',
                                       style: TextStyle(color: Colors.red)),
-                                  icon: const Icon(Icons.delete, color: Colors.red,),
+                                  icon: const Icon(
+                                    Icons.delete,
+                                    color: Colors.red,
+                                  ),
                                 ),
                               ],
                             ),
