@@ -19,6 +19,7 @@ class _ToDoScreenState extends State<ToDoScreen> {
     _loadTasks();
   }
 
+  // for loading the task
   void _loadTasks() {
     List<dynamic>? storedTasks = _storage.read<List>('tasks');
     if (storedTasks != null) {
@@ -29,10 +30,12 @@ class _ToDoScreenState extends State<ToDoScreen> {
     }
   }
 
+  // for saving the task
   void _saveTasks() {
     _storage.write('tasks', _tasks);
   }
 
+  // for adding the task
   void _addTask(inputData, status) {
     if (inputData.isNotEmpty) {
       setState(() {
@@ -43,6 +46,7 @@ class _ToDoScreenState extends State<ToDoScreen> {
     }
   }
 
+  // for updating the task
   void _updateTask(int index, String newTitle) {
     if (newTitle.isNotEmpty) {
       setState(() {
@@ -52,6 +56,7 @@ class _ToDoScreenState extends State<ToDoScreen> {
     }
   }
 
+  // for deleting the task
   void _deleteTask(int index) {
     setState(() {
       _tasks.removeAt(index);
