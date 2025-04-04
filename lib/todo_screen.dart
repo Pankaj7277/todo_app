@@ -16,7 +16,7 @@ class _ToDoScreenState extends State<ToDoScreen> {
   @override
   void initState() {
     super.initState();
-    _loadTasks();
+    _loadTasks(); // load tasks from storage
   }
 
   // for loading the task
@@ -64,6 +64,7 @@ class _ToDoScreenState extends State<ToDoScreen> {
     });
   }
 
+  // toggle tasks
   void _toggleTask(int index) {
     setState(() {
       _tasks[index]['completed'] = !_tasks[index]['completed'];
@@ -73,6 +74,7 @@ class _ToDoScreenState extends State<ToDoScreen> {
 
   bool _isCompleted = false;
 
+  // dialog to add some task
   void _showAddTaskDialog() {
     _controller.clear();
     _isCompleted = false;
